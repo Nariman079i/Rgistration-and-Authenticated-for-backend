@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {% if request.user.is_authenticated %}
+
+    Success
+    {{ username }} <br>
+    <a href="{% url 'logout' %}">Logout</a>
+
+    {% else %}
+    <a href="{% url 'registration' %}">Registration</a> or <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+    {% if form != None %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit"></button>
+    </form>
+    {% endif %}
+</body>
+</html>
